@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLaMA Inference</title>
+</head>
+<body>
+    <h1>LLaMA Inference Page</h1>
+    <form id="llama-form">
+        <textarea id="prompt" rows="5" cols="50" placeholder="Enter your prompt here"></textarea><br>
+        <button type="button" onclick="sendPrompt()">Send</button>
+    </form>
+    <pre id="response"></pre>
+
+    <script>
+        function sendPrompt() {
+            fetch('/llama/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: document.getElementById('prompt').value })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.response || data.error;
+            });
+        }
+    </script>
+</body>
+</html>
