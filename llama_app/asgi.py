@@ -14,4 +14,3 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'llama_app.settings')
 
 application = get_asgi_application()
-print("ASGI application initialized with settings module:", os.environ['DJANGO_SETTINGS_MODULE'])
